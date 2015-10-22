@@ -14,13 +14,13 @@ use EasyRdf_Resource;
 class SKOSReader
 {
 
-    private function fromCache($uri, $invalidate){
+    private function fromCache($uri, $invalidate, $format){
         if(Cache::has($uri) && !$invalidate){
             $graph = Cache::get($uri);
         }
 
         else{
-            $graph = new EasyRdf_Graph($uri);
+            $graph = new EasyRdf_Graph($uri, null, $format);
             $graph->load();
             Cache::add($uri, $graph,  600);
         }
@@ -38,10 +38,10 @@ class SKOSReader
     }
 
 
-    public function read($uri, $invalidate){
+    public function read($uri, $invalidate, $format){
         $this->client($uri);
 
-        $graph = $this->fromCache($uri, $invalidate);
+        $graph = $this->fromCache($uri, $invalidate, $format);
 
         $concepts = $graph->allOfType("http://www.w3.org/2004/02/skos/core#Concept");
 

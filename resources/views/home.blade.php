@@ -67,7 +67,7 @@
                             '{{URL::to("api/resources")}}' : '{{URL::to("api/resources/children")}}';
                 },
                 'data' : function (node) {
-                    var params =  { 'id' : node.id, 'uri':'{{$uri}}' };
+                    var params =  { 'id' : node.id, 'uri':'{{$uri}}', 'format':'{{$format}}' };
                     var invalidate = @if($invalidate)true @else false @endif;
                     if(invalidate==1){
                         params = $.extend({"invalidate":"true"}, params);

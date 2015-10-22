@@ -19,8 +19,9 @@ class ResourceController extends Controller
 {
     public function index(){
         $uri = Input::get("uri");
+        $format = Input::get("format");
         $skosReader = new SKOSReader();
-        $roots = $skosReader->read($uri, Input::has("invalidate"));
+        $roots = $skosReader->read($uri, Input::has("invalidate"), $format);
         $collection = new Collection($roots);
 
         $result = $collection->map(function(array $element){

@@ -16,6 +16,8 @@ class HomeController extends Controller
 {
     public function index(){
         $uri = Input::get("uri");
-        return View::make("home")->with("uri", $uri)->with("invalidate", Input::has("invalidate"));
+        $format = Input::get("format");
+        return View::make("home")->with("uri", $uri)->with("invalidate", Input::has("invalidate"))
+            ->with("format", $format);
     }
 }
