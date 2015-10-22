@@ -37,10 +37,11 @@ class ResourceController extends Controller
     public function children(){
         $uri = Input::get("uri");
         $inp_id = Input::get("id");
+        $format = Input::get("format");
         $b64_id = str_replace("res_", "",$inp_id);
         $id = base64_decode($b64_id);
         $skosReader = new SKOSReader();
-        $nodeChildren = $skosReader->getNode($uri, $id);
+        $nodeChildren = $skosReader->getNode($uri, $id, $format);
         $collection = new Collection($nodeChildren);
 
         $result = $collection->map(function(array $element){

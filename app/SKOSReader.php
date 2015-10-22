@@ -102,10 +102,10 @@ class SKOSReader
         return array_merge($authenticChildren, $affinityChildren);
     }
 
-    public function getNode($uri, $node){
+    public function getNode($uri, $node, $format){
        $this->client($uri);
 
-        $graph = $this->fromCache($uri, false);
+        $graph = $this->fromCache($uri, false, $format);
 
         /** @var EasyRdf_Resource $concept */
         $concept = $graph->resource($node);
