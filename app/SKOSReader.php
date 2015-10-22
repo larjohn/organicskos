@@ -21,7 +21,7 @@ class SKOSReader
 
         else{
             $graph = new EasyRdf_Graph($uri, null, $format);
-            $graph->load();
+            $graph->load(null, $format);
             Cache::add($uri, $graph,  600);
         }
 
